@@ -651,7 +651,7 @@ radio.onReceivedString(function (receivedString) {
                         )
                         if (true) {
                             _codeComment_AsText = "For now, all 4 corners = Error: Unknown Msg"
-                            error_Message_Func("2024-0213-1700", "")
+                            error_Message_Func("2024-0213-1700", "abc")
                             screen_IconMesssage_Func("error")
                         }
                     }
@@ -921,13 +921,13 @@ radio.onReceivedValue(function (name, value) {
                     quest_Note_1.quest_Show_String_For_Note_Small_Fn(
                     "Invalid Network Message: 'value'('motor_Power_Gear_Number_Int')"
                     )
-                    error_Message_Func("24-0213-1730", "")
+                    error_Message_Func("24-0213-1730", "abc")
                 }
             } else {
                 quest_Note_1.quest_Show_String_For_Note_Small_Fn(
                 "Invalid Network Message: 'name'"
                 )
-                error_Message_Func("24-0213-1731", "")
+                error_Message_Func("24-0213-1731", "abc")
             }
             quest_Note_3.quest_Show_String_For_Note_Big_Fn(
             "Forever: Convert Network Message to Operate 'B'ot"
