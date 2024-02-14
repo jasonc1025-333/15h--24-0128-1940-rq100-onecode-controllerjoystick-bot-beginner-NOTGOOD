@@ -564,103 +564,7 @@ input.onButtonPressed(Button.AB, function () {
         setup_ControllerOnly_Fn()
     }
 })
-// RQ-BX-G (Global)
-radio.onReceivedString(function (receivedString) {
-    if (true) {
-        _codeComment_AsText = "For Local-Controller-Remote"
-        if (!(device_Type_Bot_Bool)) {
-            _codeComment_AsText = "Only place that activates Bot"
-            _codeComment_AsText = "Bot can only be activated by wake-up message from Controller-Remote"
-            device_Type_Bot_Bool = true
-            setup_BotOnly_Fn()
-        } else if (device_Type_Bot_Bool && !(device_Mode_Edit_Bool)) {
-            if (true) {
-                if (true) {
-                    serial.writeLine("> RadioNetwork:> " + receivedString + " <")
-                }
-                screen_Clear_Func()
-                if (true) {
-                    if (receivedString == "forward") {
-                        quest_Motors.quest_Set_PowerMotorsViaBlueRedBlackPins_Fn(
-                        quest_PortGroup_BlueRedBlack_PortIds_Enum.S1_MotorLeft__S0_MotorRight,
-                        motor_Power_Full_Current_Pos,
-                        motor_Power_Full_Current_Pos
-                        )
-                        led.plot(2, 4)
-                    } else if (receivedString == "backward") {
-                        quest_Motors.quest_Set_PowerMotorsViaBlueRedBlackPins_Fn(
-                        quest_PortGroup_BlueRedBlack_PortIds_Enum.S1_MotorLeft__S0_MotorRight,
-                        motor_Power_Full_Current_Neg,
-                        motor_Power_Full_Current_Neg
-                        )
-                        led.plot(2, 0)
-                    } else if (receivedString == "left") {
-                        quest_Motors.quest_Set_PowerMotorsViaBlueRedBlackPins_Fn(
-                        quest_PortGroup_BlueRedBlack_PortIds_Enum.S1_MotorLeft__S0_MotorRight,
-                        motor_Power_Full_Current_Neg,
-                        motor_Power_Full_Current_Pos
-                        )
-                        led.plot(4, 2)
-                    } else if (receivedString == "right") {
-                        quest_Motors.quest_Set_PowerMotorsViaBlueRedBlackPins_Fn(
-                        quest_PortGroup_BlueRedBlack_PortIds_Enum.S1_MotorLeft__S0_MotorRight,
-                        motor_Power_Full_Current_Pos,
-                        motor_Power_Full_Current_Neg
-                        )
-                        led.plot(0, 2)
-                    } else if (receivedString == "stop") {
-                        _codeComment_AsText = "To complement Gear Icons"
-                        // //jwc o roboQuest.powerMotorsViaBlueRedBlackPins(PortGroup_BlueRedBlack__PortIds__Enum.S1_MotorLeft__S0_MotorRight, motor_Power_ZERO_INT, motor_Power_ZERO_INT)
-                        quest_Motors.quest_Set_PowerMotorsViaBlueRedBlackPins_Fn(
-                        quest_PortGroup_BlueRedBlack_PortIds_Enum.S1_MotorLeft__S0_MotorRight,
-                        motor_Power_ZERO_INT,
-                        motor_Power_ZERO_INT
-                        )
-                        led.plot(2, 2)
-                        _codeComment_AsText = "During idle, show entity-type: B=Bot, C=Controller"
-                        screen_IconMesssage_Func("bot")
-                    } else if (receivedString == "arm_down") {
-                        let servoArm_DOWN_DEGREES_INT = 0
-                        pins.servoWritePin(AnalogPin.P15, servoArm_DOWN_DEGREES_INT)
-                        screen_IconMesssage_Func("d")
-                    } else if (receivedString == "arm_up") {
-                        let servoArm_UP_DEGREES_INT = 0
-                        pins.servoWritePin(AnalogPin.P15, servoArm_UP_DEGREES_INT)
-                        screen_IconMesssage_Func("u")
-                    } else if (receivedString == "gear_lo") {
-                        if (true) {
-                            motor_Power_Full_Current_Pos = motor_Power_Gear_01_MAX
-                            motor_Power_Full_Current_Neg = -1 * motor_Power_Full_Current_Pos
-                            motor_Power_Half_Current = Math.round(0.5 * motor_Power_Full_Current_Pos)
-                            screen_IconMesssage_Func("1")
-                        }
-                    } else if (receivedString == "gear_hi") {
-                        if (true) {
-                            motor_Power_Full_Current_Pos = motor_Power_Gear_02_MAX
-                            motor_Power_Full_Current_Neg = -1 * motor_Power_Full_Current_Pos
-                            motor_Power_Half_Current = Math.round(0.5 * motor_Power_Full_Current_Pos)
-                            screen_IconMesssage_Func("2")
-                        }
-                    } else {
-                        _codeComment_AsText = "Error: Unknown Msg"
-                        // //jwc o roboQuest.powerMotorsViaBlueRedBlackPins(PortGroup_BlueRedBlack__PortIds__Enum.S1_MotorLeft__S0_MotorRight, motor_Power_ZERO_INT, motor_Power_ZERO_INT)
-                        quest_Motors.quest_Set_PowerMotorsViaBlueRedBlackPins_Fn(
-                        quest_PortGroup_BlueRedBlack_PortIds_Enum.S1_MotorLeft__S0_MotorRight,
-                        motor_Power_ZERO_INT,
-                        motor_Power_ZERO_INT
-                        )
-                        if (true) {
-                            _codeComment_AsText = "For now, all 4 corners = Error: Unknown Msg"
-                            error_Message_Func("2024-0213-1700", "abc")
-                            screen_IconMesssage_Func("error")
-                        }
-                    }
-                }
-                network__CpuCycle_Post__Management_Func()
-            }
-        }
-    }
-})
+
 // * Techncial Notes
 // 
 // * 2019-0519-0340
@@ -770,105 +674,103 @@ input.onButtonPressed(Button.B, function () {
         }
     }
 })
-/**
- * * General Notes
- * 
- * * 2019-0519-0340
- * 
- * ** DFRobot Driver Expansion Board
- * 
- * * 2019-0525-09-HAA TYJ first complete joystick XY
- * 
- * * Technical Notes
- * 
- * * 2019-1019
- * 
- * ** Create more responsiveness, no DeadZone
- * 
- * * 2020-0120: 844 SW error : GC allocation failed for requested number bytes: GC (garbage collection) error of 57 variables max,
- * 
- * ** Delete 'index_y2' (tried to reuse but '844' error)
- * 
- * ** Tried to reuse 'item' but probably is a system var
- * 
- * ** Remove unused 'button_AandB_Countdown_CpuCycles', 'buttonA_Then_B_On'
- * 
- * ** Rename used-only-once-via-set:
- * 
- * *** 'dashboardDisplay_Brightness_HI' to 'servo_Pan_Degrees' :)+
- * 
- * *** 'groupChannel_Digit_MIN' to 'servo_Pan_Degrees'
- * 
- * *** 'groupChannel_Digit_MAX' to 'servo_Tilt_Degrees'
- * 
- * * 2020-0120-02: Arm Servo
- * 
- * ** S-bus not work (DFRobot driver), so switch to P-bus (MakeCode driver)
- * 
- * ** DfRobot only has P0, P1, P2 as Read/Write from MakeCode's Menu, so reserve for Read Only.  Rest for Write Only.
- * 
- * *** Ultrasonic Sensor: P0 (Read, Echo), P8 (Write, Trigger)
- * 
- * *** ServoArmRight: P12 (Write-Only)
- * 
- * *** PIxyCam: P13 (Write-Only) Pan Servo, P14 (Write-Only) Tilt Servo, P1 (Read) Dig In from PixyCam-P1, P2 (Read) Ana In from PIxyCam-P8, S8-Pwr, S8-Gnd
- * 
- * * 2020-0224-1215
- * 
- * ** Network Test w/ Gaming Server
- * 
- * *** w/ Sonar: Simulated or Real
- * 
- * *** w/ BotId: Random or Real
- * 
- * * 2020-0305
- * 
- * ** 844 Error 57,49 variable max issue: Consolidate 'index_X' 'index_Y' to 'index'
- * 
- * *** Delete obsolete 'joystick_Value'
- * 
- * * 2020-0328
- * 
- * ** DFRobot S1 not seem to work for Arm-Right, though worked before, go back to micro:bit P16
- * 
- * ** abandon usage of S1-S6 for now, not reliable, since not work before, yet TYJ P1-P16 does  :)+
- * 
- * * 2020-04xx
- * 
- * Micro-Servo 9G A0090 (Sparkfun)
- * 
- * ~ HiTec HS-55
- * 
- * MicroBit: 'servo set pulse pin Px (e.g. P8) to (us) ___'  :)+
- * 
- * 0 no
- * 
- * 250 0
- * 
- * 500 no
- * 
- * >> 750: 45
- * 
- * 1000 90 - 10 = 80
- * 
- * 1250 90 + 10 = 100
- * 
- * >> 1500 90 + 30
- * 
- * 1750 180 - 30
- * 
- * 2000 170
- * 
- * 2250 190
- * 
- * >> 2500 225 = 180 + 30/45
- * 
- * 2750 no
- * 
- * 3000 no
- * 
- * * Using DFRobot Servo Pins not reliable, possibly since these are 3.3.v servos (not standard 5.0v servos), thus use MicroBit 'servo write pin Pxx' blocks for reliable 0-180 degrees.
- */
+// * General Notes
+// 
+// * 2019-0519-0340
+// 
+// ** DFRobot Driver Expansion Board
+// 
+// * 2019-0525-09-HAA TYJ first complete joystick XY
+// 
+// * Technical Notes
+// 
+// * 2019-1019
+// 
+// ** Create more responsiveness, no DeadZone
+// 
+// * 2020-0120: 844 SW error : GC allocation failed for requested number bytes: GC (garbage collection) error of 57 variables max,
+// 
+// ** Delete 'index_y2' (tried to reuse but '844' error)
+// 
+// ** Tried to reuse 'item' but probably is a system var
+// 
+// ** Remove unused 'button_AandB_Countdown_CpuCycles', 'buttonA_Then_B_On'
+// 
+// ** Rename used-only-once-via-set:
+// 
+// *** 'dashboardDisplay_Brightness_HI' to 'servo_Pan_Degrees' :)+
+// 
+// *** 'groupChannel_Digit_MIN' to 'servo_Pan_Degrees'
+// 
+// *** 'groupChannel_Digit_MAX' to 'servo_Tilt_Degrees'
+// 
+// * 2020-0120-02: Arm Servo
+// 
+// ** S-bus not work (DFRobot driver), so switch to P-bus (MakeCode driver)
+// 
+// ** DfRobot only has P0, P1, P2 as Read/Write from MakeCode's Menu, so reserve for Read Only.  Rest for Write Only.
+// 
+// *** Ultrasonic Sensor: P0 (Read, Echo), P8 (Write, Trigger)
+// 
+// *** ServoArmRight: P12 (Write-Only)
+// 
+// *** PIxyCam: P13 (Write-Only) Pan Servo, P14 (Write-Only) Tilt Servo, P1 (Read) Dig In from PixyCam-P1, P2 (Read) Ana In from PIxyCam-P8, S8-Pwr, S8-Gnd
+// 
+// * 2020-0224-1215
+// 
+// ** Network Test w/ Gaming Server
+// 
+// *** w/ Sonar: Simulated or Real
+// 
+// *** w/ BotId: Random or Real
+// 
+// * 2020-0305
+// 
+// ** 844 Error 57,49 variable max issue: Consolidate 'index_X' 'index_Y' to 'index'
+// 
+// *** Delete obsolete 'joystick_Value'
+// 
+// * 2020-0328
+// 
+// ** DFRobot S1 not seem to work for Arm-Right, though worked before, go back to micro:bit P16
+// 
+// ** abandon usage of S1-S6 for now, not reliable, since not work before, yet TYJ P1-P16 does  :)+
+// 
+// * 2020-04xx
+// 
+// Micro-Servo 9G A0090 (Sparkfun)
+// 
+// ~ HiTec HS-55
+// 
+// MicroBit: 'servo set pulse pin Px (e.g. P8) to (us) ___'  :)+
+// 
+// 0 no
+// 
+// 250 0
+// 
+// 500 no
+// 
+// >> 750: 45
+// 
+// 1000 90 - 10 = 80
+// 
+// 1250 90 + 10 = 100
+// 
+// >> 1500 90 + 30
+// 
+// 1750 180 - 30
+// 
+// 2000 170
+// 
+// 2250 190
+// 
+// >> 2500 225 = 180 + 30/45
+// 
+// 2750 no
+// 
+// 3000 no
+// 
+// * Using DFRobot Servo Pins not reliable, possibly since these are 3.3.v servos (not standard 5.0v servos), thus use MicroBit 'servo write pin Pxx' blocks for reliable 0-180 degrees.
 function network__CpuCycle_Post__Management_Func () {
     if (true) {
         if (false) {
@@ -1117,12 +1019,7 @@ let network_Throttle_MilliSec_Per_CpuCycle_End = 0
 let network_Throttle_MilliSec_Per_CpuCycle_Start = 0
 let network_GroupChannel_MyBotAndController_Base0_Int = 0
 let _codeComment_AsText = ""
-if (true) {
-    _codeComment_AsText = "Set GroupChannel-# for Both Bot & Controller-Remote."
-    network_GroupChannel_MyBotAndController_Base0_Int = 1
-    setup_Network_Fn()
-    setup_BotAndController_Fn()
-}
+
 basic.forever(function () {
     quest_Note_3.quest_Show_String_For_Note_Big_Fn(
     "Block Coding Special Notes"
@@ -1195,112 +1092,11 @@ basic.forever(function () {
         basic.showString(".")
     }
 })
-basic.forever(function () {
-    if (device_Type_Controller_Bool && !(device_Mode_Edit_Bool)) {
-        quest_Note_3.quest_Show_String_For_Note_Big_Fn(
-        "Forever::: Send Network Message to 'B'ot:: Controller_Joystick: Joystick"
-        )
-        quest_Note_5.quest_Show_String_For_Note_Big_Fn(
-        "Network Message 'name' Max_Character_Length: 8"
-        )
-        if (true) {
-            controller_Joystick__Raw_OriginAtBottomRight__X_Int = joystickbit.getRockerValue(joystickbit.rockerType.X)
-            controller_Joystick__Cartesian_OriginAtCenter__X_Int = convert_Joytick__Raw_To_Cartesian__X_Int_Func(controller_Joystick__Raw_OriginAtBottomRight__X_Int)
-            controller_Joystick__Raw_OriginAtBottomRight__Y_Int = joystickbit.getRockerValue(joystickbit.rockerType.Y)
-            controller_Joystick__Cartesian_OriginAtCenter__Y_Int = convert_Joytick__Raw_To_Cartesian__Y_Int_Func(controller_Joystick__Raw_OriginAtBottomRight__Y_Int)
-        }
-        if (true) {
-            controller_Joystick__Polar_OriginAtCenter__AngleDegree_Int = convert_Controller_Joystick__Cartesian_To_Polar__AngleDegree_AsIncremented_Int_Func_NOPARAMETERS()
-            controller_Joystick__Polar_OriginAtCenter__RayDistance_Int = convert_Controller_Joystick__Cartesian_To_Polar__RayDistance_Int_Func_NOPARAMETERS()
-        }
-        screen_Clear_Func()
-        if (controller_Joystick__Polar_OriginAtCenter__RayDistance_Int < controller_Joystick__Polar_OriginAtCenter__RayDistance__Deadzone_AsIdle__INT) {
-            quest_Note_2.quest_Show_String_For_Note_Small_Fn(
-            "Zero values if not exceed 'Deadzone_AsIdle'"
-            )
-            quest_Note_2.quest_Show_String_For_Note_Small_Fn(
-            "Motion: Not"
-            )
-            radio.sendString("stop")
-            led.plot(2, 2)
-            screen_IconMesssage_Func("controller")
-        } else {
-            if (true) {
-                quest_Note_2.quest_Show_String_For_Note_Small_Fn(
-                "Motion: Yes"
-                )
-                quest_Note_2.quest_Show_String_For_Note_Big_Fn(
-                "Convert Network Message to Operate 'B'ot: "
-                )
-                if (controller_Joystick__Polar_OriginAtCenter__AngleDegree_Int == 0 || controller_Joystick__Polar_OriginAtCenter__AngleDegree_Int == 360) {
-                    if (true) {
-                        quest_Note_2.quest_Show_String_For_Note_Small_Fn(
-                        "Controller_Joystick: East"
-                        )
-                        radio.sendString("right")
-                        led.plot(4, 2)
-                    }
-                } else if (controller_Joystick__Polar_OriginAtCenter__AngleDegree_Int == 90) {
-                    if (true) {
-                        quest_Note_2.quest_Show_String_For_Note_Small_Fn(
-                        "Controller_Joystick: North"
-                        )
-                        radio.sendString("forward")
-                        led.plot(2, 0)
-                    }
-                } else if (controller_Joystick__Polar_OriginAtCenter__AngleDegree_Int == 180) {
-                    if (true) {
-                        quest_Note_2.quest_Show_String_For_Note_Small_Fn(
-                        "Controller_Joystick: West"
-                        )
-                        radio.sendString("left")
-                        led.plot(0, 2)
-                    }
-                } else if (controller_Joystick__Polar_OriginAtCenter__AngleDegree_Int == 270) {
-                    if (true) {
-                        quest_Note_2.quest_Show_String_For_Note_Small_Fn(
-                        "Controller_Joystick: South"
-                        )
-                        radio.sendString("backward")
-                        led.plot(2, 4)
-                    }
-                } else {
-                    quest_Note_4.quest_Show_String_For_Note_Small_Fn(
-                    "Invalid 'controller_Joystick_Angle_Degrees_AsIncremented_Int'"
-                    )
-                    error_Message_Func("2024-0212-1730", convertToText(controller_Joystick__Polar_OriginAtCenter__AngleDegree_Int))
-                }
-                if (false) {
-                    convert_Controller_Joystick_AngleDegrees_ToMicrobit5x5Screen_Fn(controller_Joystick__Polar_OriginAtCenter__AngleDegree_Int)
-                }
-            }
-        }
-        network__CpuCycle_Post__Management_Func()
-    }
-})
+
 basic.forever(function () {
 	
 })
-basic.forever(function () {
-    if (device_Type_Controller_Bool && !(device_Mode_Edit_Bool)) {
-        quest_Note_3.quest_Show_String_For_Note_Big_Fn(
-        "Forever::: Send Network Message to 'B'ot:: Controller_Joystick: Buttons"
-        )
-        quest_Note_5.quest_Show_String_For_Note_Big_Fn(
-        "Network Message 'name' Max_Character_Length: 8"
-        )
-        if (joystickbit.getButton(joystickbit.JoystickBitPin.P12)) {
-            motor_Power_Gear_Number_Int = 1
-            radio.sendString("gear_lo")
-            led.plot(2, 1)
-        } else if (joystickbit.getButton(joystickbit.JoystickBitPin.P13)) {
-            motor_Power_Gear_Number_Int = 2
-            radio.sendString("gear_hi")
-            led.plot(2, 3)
-        }
-        network__CpuCycle_Post__Management_Func()
-    }
-})
+
 basic.forever(function () {
     _codeComment_AsText = "DashboardDisplay_GroupChannel_Edit_Mode"
     if (device_Mode_Edit_Bool) {
